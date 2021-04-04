@@ -1,0 +1,4 @@
+((((((((((("arabidopsis thaliana"[Organism]) AND "illumina"[Platform]) AND "transcriptomic"[Source]) AND "rna seq"[Strategy]) AND "paired"[Layout]) AND (Col-0[Text Word] OR Col 0[Text Word] OR Col0[Text Word] OR col0[Text Word]))))))) OR (Col-0[Title] OR Col 0[Title] OR Col0[Title] OR col0[Title])
+
+
+"arabidopsis thaliana"[Organism]) AND "illumina"[Platform]) AND "transcriptomic"[Source] AND "rna seq"[Strategy] AND "paired"[Layout] AND (Col-0[Text Word] OR "Col 0"[Text Word] OR Col0[Text Word] OR col0[Text Word] OR "col 0"[Text Word] OR col-0[Text Word] OR Col-0[Title] OR "Col 0"[Title] OR Col0[Title] OR col0[Title] OR "col 0"[Title] OR col-0[Title]) NOT mutant[Text Word] NOT mutant[Title]
