@@ -45,7 +45,7 @@ def readTrainAndTestGenes(options):
     fhr = open(options.train_test_gene_file, "r")
     for line in fhr:
         col1,label,list_of_genes = line.strip().split("\t")
-        list_of_genes = list_of_genes.split(",")
+        list_of_genes = [g.strip() for g in list_of_genes.split(",")]
         if col1 == "Train":
             if label == "1":
                 train_pos.extend(list_of_genes)
