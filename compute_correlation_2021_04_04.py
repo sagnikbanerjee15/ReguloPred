@@ -61,7 +61,7 @@ def readTrainAndTestGenes(options):
     return train_pos, train_neg, test_pos, test_neg
     
 def readCorrelationFile(options):
-    correlations = []
+    correlations = {}
     fhr = open(options.correlation_filename, "r")
     for line in fhr:
         gene1,gene2,counts= line.strip().split()
