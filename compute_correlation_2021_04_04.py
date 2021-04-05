@@ -22,7 +22,6 @@ python compute_correlation_2021_04_04.py \
 --cpu $CPU\
 1> 
 2> 
-
 """
 
 def parseCommandLineArguments():
@@ -43,10 +42,10 @@ def readTrainAndTestGenes(options):
     fhr = open(options.train_test_gene_file, "r")
     for line in fhr:
         col1,label,list_of_genes = line.strip().split("\t")
-        list_of_genes = [g.strip() for g in list_of_genes.split(",")]
+        list_of_genes = [g for g in list_of_genes.split(",")]
         genes_to_be_removed = []
         for g in list_of_genes:
-            if g!=g.strip():
+            if len(g)!=len(g.strip()):
                 genes_to_be_removed.append(g)
         print(genes_to_be_removed)
         for g in genes_to_be_removed:
