@@ -81,7 +81,8 @@ def readCorrelationFile(options):
 def calculateAverageCorrelationOfOneGeneWithAGroupOfGenes(gene,gene_list,correlations):
     average = 0
     for g in gene_list:
-        average += correlations[gene][g]
+        if gene in correlations and g in correlations[gene][g]:
+            average += correlations[gene][g]
     return average/len(gene_list)
 
 def calculateCorrelationForEachGene(train_pos, train_neg, test_pos, test_neg,correlations,options):
