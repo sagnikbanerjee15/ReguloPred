@@ -7,8 +7,6 @@ import os
 import pickle
 import pprint
 import numpy as np
-
-from ruffus.proxy_logger import *
 from scipy.stats import kendalltau, pearsonr, spearmanr
 
 from predict_regulons import *
@@ -46,6 +44,13 @@ def readTrainAndTestGenes(options):
     for line in fhr:
         col1,label,list_of_genes = line.strip().split("\t")
         list_of_genes = [g.strip() for g in list_of_genes.split(",")]
+        genes_to_be_removed = []
+        for g in list_of_genes:
+            if g!=g.strip():
+                genes_to_be_removed.append(g)
+        print(genes_to_be_removed)
+        for g in genes_to_be_removed:
+            list_of_genes.remove(g)
         if col1 == "Train":
             if label == "1":
                 train_pos.extend(list_of_genes)
