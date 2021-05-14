@@ -42,7 +42,7 @@ def readTrainAndTestGenes(options):
     fhr = open(options.train_test_gene_file, "r")
     for line in fhr:
         col1,label,list_of_genes = line.strip().split("\t")
-        list_of_genes = [g for g in list_of_genes.split(",")]
+        list_of_genes = [g.strip() for g in list_of_genes.split(",")]
         genes_to_be_removed = []
         for g in list_of_genes:
             if len(g)!=len(g.strip()):
@@ -95,12 +95,14 @@ def calculateCorrelationForEachGene(train_pos, train_neg, test_pos, test_neg,cor
         z_i_minus = calculateAverageCorrelationOfOneGeneWithAGroupOfGenes(gi,train_neg,correlations)
         s_plus = 0
         for gj in train_pos:
-            s_plus += (correlations[gi][gj] - z_i_plus)**2
+            if gi in correlations and gj in correlations[gi]:
+                s_plus += (correlations[gi][gj] - z_i_plus)**2
         s_plus = s_plus/(len(train_pos)-1)
         
         s_minus = 0
         for gj in train_neg:
-            s_minus += (correlations[gi][gj] - z_i_minus)**2
+            if gi in correlations and gj in correlations[gi]:
+                s_minus += (correlations[gi][gj] - z_i_minus)**2
         s_minus = s_minus/(len(train_neg)-1)
         
         s_p = math.sqrt(((len(train_pos)-1)*s_plus**2 + (len(train_neg)-1)*s_minus**2)/(len(train_pos)+len(train_neg)-2))
